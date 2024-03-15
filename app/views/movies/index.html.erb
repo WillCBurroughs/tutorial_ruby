@@ -1,8 +1,26 @@
 
 <%# Iterate through all the values and display correct value %>
-<ul>
 
-    <%@movies.each do |movie| %>
-        <li> <%= movie %> </li>
-    <% end %>
-</ul>
+<% @movies.each do |movie| %>
+  <section class="movie">
+    <div class="image">
+        <%= image_tag movie.image_file_name %>
+    </div>
+    <div class="summary">
+      <h2>
+        <%= link_to movie.title, movie %>
+      </h2>
+      <h3>
+        <%= total_gross(movie) %>
+      </h3>
+      <p>
+        <%= truncate(movie.description, length: 150, separator: ' ') %>
+      </p>
+    </div>
+  </section>
+<% end %> 
+
+<section class="admin">
+  <%= link_to "Add New Movie", new_movie_path, class: "button" %>
+</section>
+
